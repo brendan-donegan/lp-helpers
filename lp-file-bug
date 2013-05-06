@@ -24,9 +24,7 @@ def main():
                                 It is recommended to use the inbuilt editor
                                 to write a more verbose description though.""")
     parser.add_argument("--tag","-t",
-                        action="append",
-                        default=[],
-                        help="Bug tags - specify as many as needed")
+                        help="Bug tag - can only specify one due to LP limit")
     parser.add_argument("--private",
                         action="store_true",
                         default=False,
@@ -62,7 +60,7 @@ def main():
               'description': description,
               'private': args.private}
     if args.tag:
-        kwargs['tags'] = ' '.join(args.tag)
+        kwargs['tags'] = args.tag
     try:
         bug = lp.bugs.createBug(**kwargs)
         print(bug.web_link)
