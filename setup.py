@@ -12,7 +12,7 @@ setup(
     long_description = """
 This project provides scripts for simplifying common workflows involving Launchpad and Bazaar
 """,
-    scripts = ["lp-propose-merge","lp-file-bug"],
-    install_requires = ["bzr","launchpadlib","python-launchpadlib-toolkit"]
+    scripts = ["lp-propose-merge","lp-file-bug", "lp-recipe-build"],
+    install_requires = ["bzr","launchpadlib"]
 )
 
