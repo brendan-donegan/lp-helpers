@@ -58,10 +58,10 @@ def main():
         target += '/+source/' + args.package
     try:
         bug = lp.bugs.createBug(target=target,
-                            title=args.title,
-                            description=description,
-                            tags=' '.join(args.tag),
-                            private=args.private)
+                                title=args.title,
+                                description=description,
+                                tags=' '.join(args.tag),
+                                private=args.private)
         print(bug.web_link)
     except:
         print("Unable to file bug in:")
