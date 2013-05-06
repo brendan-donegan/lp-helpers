@@ -3,8 +3,8 @@
 import os
 import sys
 
+from launchpadlib.launchpad import Launchpad
 from argparse import ArgumentParser
-from lpltk import LaunchpadService
 from subprocess import check_call
 from tempfile import NamedTemporaryFile
 
@@ -13,11 +13,11 @@ def main():
     parser = ArgumentParser("A script for filing new bugs in Launchpad.")
     parser.add_argument("title",
                         help="Bug title")
-    parser.add_argument("--project","-p",
+    parser.add_argument("--project",
                         help="""Project to file the bug against - defaults
                                 to Ubuntu itself.""",
                         default="ubuntu")
-    parser.add_argument("--package","-P",
+    parser.add_argument("--package",
                         help="Package to file the bug against, if appropriate")
     parser.add_argument("--description","-d",
                         help="""Brief description of the bug, if desired.
@@ -26,15 +26,19 @@ def main():
     parser.add_argument("--tag","-t",
                         nargs='+',
                         help="Bug tags - specify as many as needed")
+    parser.add_argument("--private",
+                        action="store_true",
+                        default=False,
+                        help="Whether the bug should be created as private.")
     args = parser.parse_args()
 
     try:
-        lp = LaunchpadService()
+        lp = Launchpad.login_with(sys.argv[0], 'production')
     except:
         print("Unable to access Launchpad service.")
         return 1
 
-    # TODO: Get the description for 'your favourite editor'
+    # Get the description from 'your favourite editor'
     description = args.description
     if not description:
         editor = os.environ.get('EDITOR','nano').split()
@@ -46,12 +50,19 @@ def main():
             print("Failed to open preferred editor '%s'" % editor)
         description = tempfile.read()
 
+    # Work out the target from project and package specified
+    target = None
+    if args.project:
+        target = lp.projects[args.project].self_link
+    if args.package:
+        target += '/+source/' + args.package
     try:
-        bug = lp.create_bug(args.project, args.package,
+        bug = lp.bugs.createBug(target=target,
                             title=args.title,
                             description=description,
-                            tags=args.tag)
-        print(bug.lpbug.web_link)
+                            tags=' '.join(args.tag),
+                            private=args.private)
+        print(bug.web_link)
     except:
         print("Unable to file bug in:")
         print("\tproject: %s" % args.project)
