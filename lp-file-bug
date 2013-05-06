@@ -24,7 +24,8 @@ def main():
                                 It is recommended to use the inbuilt editor
                                 to write a more verbose description though.""")
     parser.add_argument("--tag","-t",
-                        nargs='+',
+                        action="append",
+                        default=[],
                         help="Bug tags - specify as many as needed")
     parser.add_argument("--private",
                         action="store_true",
@@ -56,12 +57,14 @@ def main():
         target = lp.projects[args.project].self_link
     if args.package:
         target += '/+source/' + args.package
+    kwargs = {'target': target,
+              'title': args.title,
+              'description': description,
+              'private': args.private}
+    if args.tag:
+        kwargs['tags'] = ' '.join(args.tag)
     try:
-        bug = lp.bugs.createBug(target=target,
-                                title=args.title,
-                                description=description,
-                                tags=' '.join(args.tag),
-                                private=args.private)
+        bug = lp.bugs.createBug(**kwargs)
         print(bug.web_link)
     except:
         print("Unable to file bug in:")
