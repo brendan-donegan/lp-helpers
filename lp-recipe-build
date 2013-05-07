@@ -34,7 +34,6 @@ def main():
                 builds = recipe.performDailyBuild()
                 if builds:
                     for build in builds:
-                        import pdb; pdb.set_trace()
                         series = lp.load(build['distro_series_link'])
                         print("Build started for {series} at: {build_link}".format(build_link=build['web_link'],
                                                                                    series=series.name.title()))
@@ -44,7 +43,6 @@ def main():
         builds = branch.recipes[0].performDailyBuild()
         if builds:
             for build in builds:
-                import pdb; pdb.set_trace()
                 series = lp.load(build['distro_series_link'])
                 print("Build started for {series} at: {build_link}".format(build_link=build['web_link'],
                                                                            series=series.name.title()))
