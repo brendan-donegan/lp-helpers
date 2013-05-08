@@ -9,3 +9,7 @@ A script to file simple, uncluttered bugs from the command line. Just give it th
 ## lp-propose-merge
 
 A script to propose a merge in Launchpad with one command. It will prompt for a description of the merge but that's about it. Use `lp-propose-merge --help` to see other options.
+
+## lp-recipe-build
+
+Kicks off a recipe build for a branch in Launchpad which has an associated recipe. Specify the branch and it will pick the recipe to use (or show you your options if there is more than one). Use `lp-recipe-build --help` for more information.
