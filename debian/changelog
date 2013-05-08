@@ -1,0 +1,5 @@
+PACKAGE (VERSION) UNRELEASED; urgency=low
+
+  * Initial release. (Closes: #XXXXXX)
+
+ -- Brendan Donegan <brendan.donegan@canonical.com>  Fri, 08 Mar 2013 18:08:42 +0000

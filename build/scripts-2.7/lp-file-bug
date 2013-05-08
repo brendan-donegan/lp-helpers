@@ -57,9 +57,8 @@ def main():
         target += '/+source/' + args.package
     kwargs = {'target': target,
               'title': args.title,
-              'description': description}
-    if args.private:
-        kwargs['private'] = args.private
+              'description': description,
+              'private': args.private}
     if args.tag:
         kwargs['tags'] = args.tag
     try:
