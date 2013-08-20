@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name = "lp-helpers",
-    version = '0.9',
+    version = '0.10',
     author = "Brendan Donegan",
     author_email = "brendan-donegan@canonical.com",
     license = "GPL",
