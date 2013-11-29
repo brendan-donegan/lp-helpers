@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name = "lp-helpers",
-    version = '0.10',
+    version = '0.11',
     author = "Brendan Donegan",
     author_email = "brendan-donegan@canonical.com",
     license = "GPL",
@@ -12,7 +12,8 @@ setup(
     long_description = """
 This project provides scripts for simplifying common workflows involving Launchpad and Bazaar. More information at https://github.com/brendan-donegan/lp-helpers
 """,
-    scripts = ["lp-propose-merge","lp-file-bug", "lp-recipe-build"],
+    scripts = ["lp-propose-merge","lp-file-bug", "lp-recipe-build",
+               "lp-clean-branches"],
     install_requires = ["bzr", "launchpadlib"]
 )
 
