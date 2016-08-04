@@ -1,0 +1,25 @@
+name: lp-helpers  # the name of the snap
+version: 1.3  # the version of the snap
+summary: Helper scripts for Launchpad  # 79 char long summary
+description: helper scripts which I have found useful for everyday life as a developer hacking code on Launchpad with Bazaar.  # a longer description for the snap
+confinement: devmode  # use "strict" to enforce system access only via declared interfaces
+
+apps:
+    lp-file-bug:
+        command: lp-file-bug
+    lp-propose-merge:
+        command: lp-propose-merge
+    lp-clean-branches:
+        command: lp-clean-branches
+    lp-recipe-build:
+        command: lp-recipe-build
+
+parts:
+    lp-helpers:  # Replace with a part name of your liking
+        # Get more information about plugins by running
+        # snapcraft help plugins
+        # and more information about the available plugins
+        # by running
+        # snapcraft list-plugins
+        plugin: python2
+        source: https://github.com/brendan-donegan/lp-helpers.git
